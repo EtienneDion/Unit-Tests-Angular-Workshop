@@ -179,6 +179,15 @@
 				//scope.todos[0].title
 				
 			});
+
+			it('removeTodo()', function () {
+
+			});
+
+			it('saveTodo()', function () {
+
+			});
+
 		});
 	});
 }());
