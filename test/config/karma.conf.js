@@ -12,8 +12,19 @@ module.exports = function (config) {
 			'js/**/*.js',
 			'test/unit/**/*.js'
 		],
+		reporters: ['progress', 'coverage'],
+		preprocessors: {
+			// source files, that you wanna generate coverage for
+			// do not include tests or libraries
+			// (these files will be instrumented by Istanbul)
+			'js/**/*.js': ['coverage']
+		},
+		coverageReporter: {
+			type : 'html',
+			dir : 'coverage/'
+		},
 		autoWatch: true,
-		singleRun: false,
-		browsers: ['Chrome', 'Firefox']
+		singleRun: true,
+		browsers: ['Chrome']
 	});
 };
