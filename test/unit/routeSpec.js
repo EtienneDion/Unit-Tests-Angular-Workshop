@@ -6,9 +6,9 @@
     describe('route', function () {
 
         it('Should load route', inject(function ($route) {
-
-            //$route.routes['/']
-            expect(true).toBe(false);
+            expect($route.routes['/'].controller).toBe('TodoCtrl');
+            expect($route.routes['/:status'].controller).toBe('TodoCtrl');
+            expect($route.routes[null].redirectTo).toBe('/');
         }));
 
     });
