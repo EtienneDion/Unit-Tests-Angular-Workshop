@@ -27,6 +27,10 @@
 			});
 		}));
 
+		it('should Todo be defined on start', function () {
+			//scope.todos
+		});
+
 		it('should not have an edited Todo on start', function () {
 			//scope.editedTodo
 		});
