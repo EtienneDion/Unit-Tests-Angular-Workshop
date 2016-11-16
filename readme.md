@@ -12,6 +12,8 @@ $ npm test
 $ npm install -g node-static
 $ static
 ```
+#### http://localhost:8080
+
 > Pour voir le coverage
 #### `/coverage/Chrome ***/index.html`
 
