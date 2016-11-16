@@ -62,7 +62,7 @@
 
         it('should get be called', function(){
             localStorage.get();
-            
+
         });
 
         it('should localStorage insert', function(){
