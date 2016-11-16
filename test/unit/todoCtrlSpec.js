@@ -28,32 +28,27 @@
 		}));
 
 		it('should Todo be defined on start', function () {
-			//scope.todos
-			expect(true).toBe(false);
+			expect(scope.todos).toBeDefined();
 		});
 
 		it('should not have an edited Todo on start', function () {
-			//scope.editedTodo
-			expect(true).toBe(false);
+			expect(scope.editedTodo).toBeNull();
 		});
 
 		it('should not have any Todos on start', function () {
-			//scope.todos.length
-			expect(true).toBe(false);
+			expect(scope.todos.length).toBe(0);
 		});
 
 		it('should have all Todos completed', function () {
 			scope.$digest();
-			//scope.allChecked
-			expect(true).toBe(false);
+			expect(scope.allChecked).toBeTruthy();
 		});
 
 		describe('the filter', function () {
 			it('should default to ""', function () {
 				scope.$emit('$routeChangeSuccess');
-				//scope.status
-				//scope.statusFilter
-				expect(true).toBe(false);
+
+				expect(scope.status).toBe('');
 			});
 
 			describe('being at /active', function () {
@@ -67,8 +62,7 @@
 					});
 
 					scope.$emit('$routeChangeSuccess');
-					//scope.statusFilter.completed
-					expect(true).toBe(false);
+					expect(scope.statusFilter.completed).toBeFalsy();
 				}));
 			});
 
@@ -83,8 +77,7 @@
 					});
 
 					scope.$emit('$routeChangeSuccess');
-					//scope.statusFilter.completed
-					expect(true).toBe(false);
+					expect(scope.statusFilter.completed).toBeTruthy();
 				}));
 			});
 		});
@@ -102,28 +95,25 @@
 
 			it('should not add empty Todos', function () {
 				scope.newTodo = '';
-				//scope.addTodo();
+				scope.addTodo();
 				scope.$digest();
-				//scope.todos.length
-				expect(true).toBe(false);
+				expect(scope.todos.length).toBe(0);
 			});
 
 			it('should not add items consisting only of whitespaces', function () {
 				scope.newTodo = '   ';
-				//scope.addTodo();
+				scope.addTodo();
 				scope.$digest();
-				//scope.todos.length
-				expect(true).toBe(false);
+				expect(scope.todos.length).toBe(0);
 			});
 
 
 			it('should trim whitespace from new Todos', function () {
 				scope.newTodo = '  buy some unicorns  ';
-				//scope.addTodo();
+				scope.addTodo();
 				scope.$digest();
-				//scope.todos.length
-				//scope.todos[0].title
-				expect(true).toBe(false);
+				expect(scope.todos.length).toBe(1);
+				expect(scope.todos[0].title).toBe('buy some unicorns');
 			});
 		});
 
@@ -136,79 +126,76 @@
 					store: store
 				});
 
-				//store.insert({ title: 'Uncompleted Item 0', completed: false });
-				//store.insert({ title: 'Uncompleted Item 1', completed: false });
-				//store.insert({ title: 'Uncompleted Item 2', completed: false });
-				//store.insert({ title: 'Completed Item 0', completed: true });
-				//store.insert({ title: 'Completed Item 1', completed: true });
-				//store.insert({ title: 'Completed Item 2', completed: true });
-				//store.insert({ title: 'Completed Item 3', completed: true });
+				store.insert({ title: 'Uncompleted Item 0', completed: false });
+				store.insert({ title: 'Uncompleted Item 1', completed: false });
+				store.insert({ title: 'Uncompleted Item 2', completed: false });
+				store.insert({ title: 'Completed Item 0', completed: true });
+				store.insert({ title: 'Completed Item 1', completed: true });
 				scope.$digest();
 			}));
 
 			it('should count Todos correctly', function () {
-				//scope.todos.length
-				//scope.remainingCount
-				//scope.completedCount
-				//scope.allChecked
-				expect(true).toBe(false);
+				expect(scope.todos.length).toBe(5);
+				expect(scope.remainingCount).toBe(3);
+				expect(scope.completedCount).toBe(2);
+				expect(scope.allChecked).toBeFalsy();
 			});
 
 			it('should save Todos to local storage', function () {
-				//scope.todos.length
-				expect(true).toBe(false);
+				expect(scope.todos.length).toBe(5);
 			});
 
 			it('should remove Todos w/o title on saving', function () {
 				var todo = store.todos[2];
-				//scope.editTodo(todo);
+				scope.editTodo(todo);
 				todo.title = '';
-				//scope.saveEdits(todo);
-				//scope.todos.length
-				expect(true).toBe(false);
+				scope.saveEdits(todo);
+				expect(scope.todos.length).toBe(4);
 			});
 
 			it('should trim Todos on saving', function () {
 				var todo = store.todos[0];
-				//scope.editTodo(todo);
+				scope.editTodo(todo);
 				todo.title = ' buy moar unicorns  ';
-				//scope.saveEdits(todo);
-				//scope.todos[0].title
-				expect(true).toBe(false);
+				scope.saveEdits(todo);
+				expect(scope.todos[0].title).toBe('buy moar unicorns');
 			});
 
 			it('clearCompletedTodos() should clear completed Todos', function () {
-				//scope.clearCompletedTodos();
-				//scope.todos.length
-				expect(true).toBe(false);
+				scope.clearCompletedTodos();
+				expect(scope.todos.length).toBe(3);
 			});
 
 			it('markAll() should mark all Todos completed', function () {
-				//scope.markAll(true);
+				scope.markAll(true);
 				scope.$digest();
-				//scope.completedCount
-				expect(true).toBe(false);
+				expect(scope.completedCount).toBe(5);
 			});
 
 			it('revertTodo() get a Todo to its previous state', function () {
 				var todo = store.todos[0];
-				//scope.editTodo(todo);
+				scope.editTodo(todo);
 				todo.title = 'Unicorn sparkly skypuffles.';
-				//scope.revertEdits(todo);
+				scope.revertEdits(todo);
 				scope.$digest();
-				//scope.todos[0].title
-				expect(true).toBe(false);
-				
+				expect(scope.todos[0].title).toBe('Uncompleted Item 0');
 			});
 
 			it('removeTodo()', function () {
-				expect(true).toBe(false);
+				var todo = store.todos[0];
+				expect(scope.todos.length).toBe(5);
+				scope.removeTodo(todo);
+				scope.$digest();
+				expect(scope.todos.length).toBe(4);
 			});
 
 			it('saveTodo()', function () {
-				expect(true).toBe(false);
+				var todo = store.todos[0];
+				todo.id = 'test';
+				scope.saveTodo(todo);
+				scope.$digest();
+				expect(scope.todos[0]).toBe(todo);
 			});
-
 		});
 	});
 }());
