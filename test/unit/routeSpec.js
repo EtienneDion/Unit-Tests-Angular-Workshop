@@ -8,7 +8,7 @@
         it('Should load route', inject(function ($route) {
 
             //$route.routes['/']
-        
+            expect(true).toBe(false);
         }));
 
     });

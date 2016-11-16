@@ -23,7 +23,7 @@
 			//browser.deferredFns.length
 
 			//timeout.flush();
-
+			expect(true).toBe(false);
 		});
 	});
 
@@ -45,7 +45,7 @@
 
 			//angular.element(el).triggerHandler({});
 
-
+			expect(true).toBe(false);
 
 		});
 	});

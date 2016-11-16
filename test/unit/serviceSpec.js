@@ -57,28 +57,28 @@
         }));
 
         it('should todos be defined', function(){
-
+            expect(true).toBe(false);
         });
 
         it('should get be called', function(){
             localStorage.get();
-
+            expect(true).toBe(false);
         });
 
         it('should localStorage insert', function(){
-
+            expect(true).toBe(false);
         });
 
         it('should localStorage clear Completed', function(){
-
+            expect(true).toBe(false);
         });
 
         it('should localStorage delete', function(){
-
+            expect(true).toBe(false);
         });
 
         it('should localStorage put', function(){
-
+            expect(true).toBe(false);
         });
     });
 
@@ -156,19 +156,19 @@
         });
 
         it('should api insert', function(){
-
+            expect(true).toBe(false);
         });
 
         it('should api clear complete', function(){
-
+            expect(true).toBe(false);
         });
 
         it('should api delete', function(){
-
+            expect(true).toBe(false);
         });
 
         it('should api put', function(){
-
+            expect(true).toBe(false);
         });
 
     });
